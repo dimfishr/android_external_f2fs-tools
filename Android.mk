@@ -63,6 +63,7 @@ LOCAL_MODULE := mkfs.f2fs
 
 # mkfs.f2fs is used in recovery: must be static.
 LOCAL_FORCE_STATIC_EXECUTABLE := true
+LOCAL_LDLIBS := --static
 
 # Recovery needs it also, so it must go into root/sbin/.
 # Directly generating into the recovery/root/sbin gets clobbered
@@ -83,6 +84,8 @@ include $(BUILD_EXECUTABLE)
 include $(CLEAR_VARS)
 # The LOCAL_MODULE name is referenced by the code. Don't change it.
 LOCAL_MODULE := fsck.f2fs
+LOCAL_FORCE_STATIC_EXECUTABLE := true
+LOCAL_LDLIBS := --static
 LOCAL_SRC_FILES := \
 	fsck/dump.c \
 	fsck/fsck.c \
